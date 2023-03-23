@@ -10,12 +10,13 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.ixltech.databinding.ActivityBankInfoBinding
 import com.example.ixltech.ui.db.MyAppDatabase
-import com.example.ixltech.ui.db.MyRepository
+import com.example.ixltech.ui.db.UserRepository
 import com.example.ixltech.ui.model.User
 import com.example.ixltech.ui.viewmodel.MyViewModel
 
@@ -54,13 +55,6 @@ class BankInfo : AppCompatActivity() {
 
 
 
-//        val bundle = intent.extras
-//                val emp_no=bundle?.getString("empNo")
-//        val emp_name=bundle?.getString("emp_name")
-//        val designation=bundle?.getString("designation")
-//        val accounts=bundle?.getString("accounts")
-//        val work_expereince=bundle?.getString("workexperience")
-
         Log.e("fname",first_name.toString())
         Log.e("lname",last_name.toString())
         Log.e("mobile_no",mobile_no.toString())
@@ -82,16 +76,12 @@ class BankInfo : AppCompatActivity() {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         branchspinner.adapter = arrayAdapter
 
-//        val adapter = ArrayAdapter.createFromResource(this, R.array.Accounts, android.R.layout.simple_spinner_item)
-//
-//        binding.accountsSpinner.adapter = adapter
+
 
         binding.branchSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
-//                val intent = Intent(this@EmployeeInfo, BankInfo::class.java)
-//                intent.putExtra("selectedItem", selectedItem)
-//                startActivity(intent)
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -100,7 +90,7 @@ class BankInfo : AppCompatActivity() {
         }
 
         val userDao = MyAppDatabase.getDatabase(applicationContext).userDao()
-        val userRepository = MyRepository(userDao)
+        val userRepository = UserRepository(userDao)
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
@@ -115,13 +105,7 @@ class BankInfo : AppCompatActivity() {
         })
 
         submitButton.setOnClickListener {
-//
-//            val bundle = Bundle()
-//            bundle.putString("empNo", binding.empNo.text.toString())
-//            bundle.putString("emp_name", binding.empName.text.toString())
-//            bundle.putString("designation", binding.designation.text.toString())
-//            bundle.putString("accounts", binding.accountsSpinner.selectedItem.toString())
-//            bundle.putString("accounts", binding.workExperienceSpinner.selectedItem.toString())
+
             var selectedItem = branchspinner.selectedItem as String
 
             val bank_name = binding.bankName.text.toString()
@@ -136,15 +120,9 @@ class BankInfo : AppCompatActivity() {
                 )
             )
 
+            Toast.makeText(this,"Data Stored in DataBase",Toast.LENGTH_LONG).show()
 
-//            val intent = Intent(this, BankInfo::class.java)
-//            intent.putExtras(bundle)
-//            intent.putExtra("empNo", binding.empNo.text.toString())
-//            intent.putExtra("emp_name", binding.empName.text.toString())
-//            intent.putExtra("designation", binding.designation.text.toString())
-//            intent.putExtra("accounts", selectedItem)
-//            intent.putExtra("workexperience", selectedWorkExp)
-//            startActivity(intent)
+
         }
 
     }

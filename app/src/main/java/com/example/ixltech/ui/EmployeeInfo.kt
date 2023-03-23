@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import com.example.ixltech.R
 import com.example.ixltech.databinding.ActivityEmployeeInfoBinding
 import com.example.ixltech.databinding.ActivityMainBinding
@@ -40,12 +41,6 @@ class EmployeeInfo : AppCompatActivity() {
         Log.e("mobile_no",mobile_no.toString())
         Log.e("gender",gender.toString())
         Log.e("dob",date_brth.toString())
-
-//        setupAccountsSpinner()
-//        setupWorkExperienceSpinner()
-
-
-
 
 
         val accounts = arrayOf("Saving", "CC", "OD", "RR")
@@ -94,13 +89,7 @@ class EmployeeInfo : AppCompatActivity() {
         }
 
         submitButton.setOnClickListener {
-//
-//            val bundle = Bundle()
-//            bundle.putString("empNo", binding.empNo.text.toString())
-//            bundle.putString("emp_name", binding.empName.text.toString())
-//            bundle.putString("designation", binding.designation.text.toString())
-//            bundle.putString("accounts", binding.accountsSpinner.selectedItem.toString())
-//            bundle.putString("accounts", binding.workExperienceSpinner.selectedItem.toString())
+
             var selectedItem = accountspinner.selectedItem as String
             var selectedWorkExp=workexperiencepsinner.selectedItem as String
 
@@ -118,59 +107,13 @@ class EmployeeInfo : AppCompatActivity() {
             intent.putExtra("gender", gender)
             intent.putExtra("dob",date_brth)
             startActivity(intent)
+
+            Toast.makeText(this,"Data Send to Bank Info Screen", Toast.LENGTH_LONG).show()
         }
     }
 
 
-//
-//    private fun setupAccountsSpinner() {
-//
-//        val accounts = arrayOf("Saving", "CC", "OD", "RR")
-//        val spinner = binding.accountsSpinner
-//        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, accounts)
-//        spinner.adapter = arrayAdapter
-//
-////        val adapter = ArrayAdapter.createFromResource(this, R.array.Accounts, android.R.layout.simple_spinner_item)
-////
-////        binding.accountsSpinner.adapter = adapter
-//
-//        binding.accountsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                val selectedItem = parent?.getItemAtPosition(position).toString()
-////                val intent = Intent(this@EmployeeInfo, BankInfo::class.java)
-////                intent.putExtra("selectedItem", selectedItem)
-////                startActivity(intent)
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//                // Do nothing
-//            }
-//        }
-//    }
-//
-//    private fun setupWorkExperienceSpinner() {
-//
-//        val workexp = arrayOf("0-1", "1-3", "3-5", "5-8")
-//        val spinner = binding.workExperienceSpinner
-//        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, workexp)
-//       spinner.adapter = arrayAdapter
-////        val adapter = ArrayAdapter.createFromResource(this, R.array.Accounts, android.R.layout.simple_spinner_item)
-////
-////        binding.workExperienceSpinner.adapter = adapter
-//
-//        binding.workExperienceSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-//                 var selectedWorkExp = parent?.getItemAtPosition(position).toString()
-////                val intent = Intent(this@EmployeeInfo, BankInfo::class.java)
-////                intent.putExtra("selectedItem", selectedWorkExp)
-////                startActivity(intent)
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//                // Do nothing
-//            }
-//        }
-//    }
+
 
 
 

@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ixltech.ui.db.MyAppDatabase
-import com.example.ixltech.ui.db.MyRepository
+import com.example.ixltech.ui.db.UserRepository
 import com.example.ixltech.ui.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,13 +19,13 @@ class MyViewModel(application: Application) : AndroidViewModel(application) {
 
     val getAllUser: LiveData<List<User>>
 
-    val repository : MyRepository
+    val repository : UserRepository
 
     // on below line we are initializing
     // our dao, repository and all notes
     init {
         val dao = MyAppDatabase.getDatabase(application).userDao()
-        repository = MyRepository(dao)
+        repository = UserRepository(dao)
         getAllUser = repository.getAllUser
     }
 

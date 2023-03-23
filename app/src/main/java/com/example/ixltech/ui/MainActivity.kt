@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
             val intent = Intent(this, PersonalInfo::class.java)
             startActivity(intent)
+
         }
 
 
